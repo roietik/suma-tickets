@@ -12,7 +12,7 @@ async function get(request, response) {
 
 async function post(request, response) {
     try {
-        response.status(201).send(await usersService.create(request.body));
+        response.send(await usersService.create(request, response));
     } catch ({ code, message }) {
         if (code === '23505') { // Check for unique email
             response.status(400).send({error: "Email already exists"});
@@ -26,11 +26,11 @@ async function post(request, response) {
 
 async function remove(request, response) {
     try {
-        response.status(204).send(await usersService.remove(request.body));
+        await usersService.remove(request, response)
     } catch ({ message }) {
-        const errorMessage = `Error deleting user: ${message}`;
+        const errorMessage = `Error updating user: ${message}`;
         console.error(errorMessage);
-        response.status(400).send({ error: errorMessage });
+        response.status(500).send({ error: errorMessage });
     }
 }
 

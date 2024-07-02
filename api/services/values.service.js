@@ -1,22 +1,23 @@
-const pgClient = require("../pg");
+const pgClient = require("./database.service");
 
 async function getAll() {
     const values = await pgClient.query("SELECT * FROM values");
-    return  values.rows;
+    return values.rows;
 }
 
 async function create(request, response) {
-    if (!request.body.value) response.send({ working: false });
+    if (!request.body.value) {
+        return response.send({ working: false })
+    }
 
     pgClient.query("INSERT INTO values(value) VALUES($1)", [request.body.value]);
-
     const values = await pgClient.query("SELECT * FROM values");
     return values.rows;
 }
 
 async function update(request, response) {
-    const valueId = request.params.id; // Get value ID from request parameter
-    const newValue = request.body.value; // Get new value from request body
+    const valueId = request.params.id;
+    const newValue = request.body.value;
 
     if (!valueId || !newValue) {
         throw new Error("Missing value ID or new value in request");
@@ -28,10 +29,10 @@ async function update(request, response) {
     );
 
     if (result.rowCount === 0) {
-        response.status(404).send({ error: "Value not found" }); // Value not found
-    } else {
-        response.send({ message: "Value updated successfully" });
+        response.status(404).send({ error: "Value not found" });
+        return;
     }
+    response.send({ message: "Value updated successfully" });
 }
 
 async function remove(request, response) {

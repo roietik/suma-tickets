@@ -4,6 +4,7 @@ const cors = require("cors");
 const usersRouter = require('./routes/users.route.js');
 const valuesRouter = require("./routes/values.route.js");
 const ticketsRouter = require("./routes/tickets.route");
+const emailsRouter = require("./routes/emails.route");
 
 const app = express();
 app.use(cors());
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 app.use('/users', usersRouter);
 app.use('/values', valuesRouter);
 app.use('/tickets', ticketsRouter);
+app.use('/emails', emailsRouter);
 
 app.listen(5050, err => {
     console.log("Listening");

@@ -9,17 +9,19 @@ async function post(request, response) {
 async function put(request, response) {
     try {
        await valuesService.update(request, response);
-    } catch (error) {
-        console.error("Error updating value:", error);
-        response.status(500).send({ error: "Error updating value" }); // User-friendly error message
+    } catch ({ message }) {
+        const errorMessage = `Error updating value: ${message}`;
+        console.error(errorMessage);
+        response.status(500).send({ error: errorMessage });
     }
 }
 async function remove(request, response) {
     try {
         await valuesService.remove(request, response)
-    } catch (error) {
-        console.error("Error deleting value:", error);
-        response.status(500).send({ error: "Error deleting value" }); // User-friendly error message
+    } catch ({ message }) {
+        const errorMessage = `Error updating value: ${message}`;
+        console.error(errorMessage);
+        response.status(500).send({ error: errorMessage });
     }
 }
 
