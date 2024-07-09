@@ -1,5 +1,6 @@
 const express = require('express');
 const ticketsRouter = express.Router();
+const ticketsController = require('../controllers/tickets.controller');
 
 const dummyTickets = [
     { id: 1, base64: "John", user_id: "22" },
@@ -48,5 +49,7 @@ ticketsRouter.delete('/:id', async (req, res) => {
         res.status(400).send({ error: err.message });
     }
 });
+
+ticketsRouter.get('/unique-id', ticketsController.getUniqueTicketNumber);
 
 module.exports = ticketsRouter;
