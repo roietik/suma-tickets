@@ -10,15 +10,15 @@ const databaseService = new Pool({
 });
 
 databaseService.on("connect", client => {
-    client
-        .query("CREATE TABLE IF NOT EXISTS values (id SERIAL PRIMARY KEY, value INT)")
-        .then(() => client.query(
-            "CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255), email VARCHAR(255))")
-        )
-        .then(() => client.query(
-            "CREATE TABLE IF NOT EXISTS tickets (id SERIAL PRIMARY KEY, base64 VARCHAR(255), user_id INT NOT NULL)")
-        )
-        .catch(err => console.log("PG ERROR", err));
+    try {
+        client.query("CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255), email VARCHAR(255))");
+        console.log("Created table users");
+
+        client.query("CREATE TABLE IF NOT EXISTS tickets (id SERIAL PRIMARY KEY, base64 BYTEA, user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users(id))");
+        console.log("Created table tickets");
+    } catch (err) {
+        console.error("PG ERROR:", err);
+    }
 });
 
 module.exports = databaseService;
