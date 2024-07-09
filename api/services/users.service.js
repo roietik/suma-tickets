@@ -1,5 +1,4 @@
 const pgClient = require("./database.service");
-const {response} = require("express");
 
 async function hasDummyUsersBeenInserted() {
     const result = await pgClient.query("SELECT COUNT(*) FROM users WHERE email LIKE '%@example.com'");
