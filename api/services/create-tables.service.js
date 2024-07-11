@@ -10,6 +10,8 @@ function createTables(client) {
         console.log("Created table tickets_limit");
         client.query("CREATE TABLE IF NOT EXISTS tickets_sold_out (id SERIAL PRIMARY KEY, tickets_sold_out BOOLEAN NOT NULL DEFAULT FALSE)");
         console.log("Created table tickets_sold_out");
+        client.query("CREATE TABLE IF NOT EXISTS employees (id SERIAL PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255), email VARCHAR(255), password VARCHAR(255))");
+        console.log("Created table employees");
 
     } catch (err) {
         console.error("PG ERROR:", err);
