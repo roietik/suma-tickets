@@ -77,7 +77,9 @@ async function login(request, response) {
 
     response.cookie('jwt', token, {
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000 // 1 day
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        secure: true,   // Only set if using HTTPS
+        sameSite: 'Lax'
     });
 
     return { message: 'success' };
@@ -97,8 +99,6 @@ async function token(request, response) {
            // todo 401
            throw new Error("Invalid token");
        }
-
-       console.log('claims', claims);
 
        const employeeResult = await pgClient.query(
            "SELECT * FROM employees WHERE id = $1",

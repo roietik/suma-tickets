@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(cors({
     credentials: true,
     // TODO for prod
-    origin: ['http://localhost:3050']
+    origin: ['http://localhost:3050'],
 }));
 app.use(bodyParser.json({ limit: "200mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "200mb" }));
