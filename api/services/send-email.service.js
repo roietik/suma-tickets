@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const keys = require("./keys.service");
+const mailConfig = require("../config/nodemailer.config");
 
 async function sendEmailSandBox() {
     // https://ethereal.email/create
@@ -29,24 +29,23 @@ async function sendEmailSandBox() {
 }
 
 async function sendEmailGmail(request, response) {
-    console.log('send email');
     const { email, ticketBase64 } = request.body;
     if (!email) {
         throw new Error("Missing required data");
     }
 
     const transporter = nodemailer.createTransport({
-        host: keys.nmHost,
-        port: keys.nmPort,
+        host: mailConfig.nmHost,
+        port: mailConfig.nmPort,
         secure: true,
         auth: {
-            user: keys.nmMail,
-            pass: keys.nmPassword
+            user: mailConfig.nmMail,
+            pass: mailConfig.nmPassword
         }
     });
 
     const message = {
-        from: keys.nmMail,
+        from: mailConfig.nmMail,
         to: email,
         subject: 'Bilet Suma 2024 Płock',
         text: 'Bilet Suma 2024 Płock',
