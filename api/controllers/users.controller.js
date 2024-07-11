@@ -1,6 +1,6 @@
 const usersService = require('../services/users.service');
 
-async function get(request, response) {
+async function getAll(request, response) {
     try {
         response.send(await usersService.getAll());
     } catch ({ code, message }) {
@@ -22,7 +22,7 @@ async function post(request, response) {
 
 async function remove(request, response) {
     try {
-        await usersService.remove(request, response)
+        response.send(await usersService.remove(request, response));
     } catch ({ message }) {
         const errorMessage = `Błąd użytkownika ${message}`;
         console.error(errorMessage);
@@ -41,7 +41,7 @@ async function isEmailExists(request, response) {
 }
 
 module.exports = {
-    get,
+    getAll,
     post,
     remove,
     isEmailExists

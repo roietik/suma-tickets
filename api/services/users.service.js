@@ -80,7 +80,7 @@ async function remove(request, response) {
     }
 
     const users = await pgClient.query("SELECT * FROM users");
-    response.send(users.rows);
+    return users.rows;
 }
 
 async function isEmailExists(email) {
