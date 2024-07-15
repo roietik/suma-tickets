@@ -37,6 +37,10 @@ services:
       - NM_MAIL=${NM_MAIL}
       - NM_PASSWORD=${NM_PASSWORD}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - ADMIN_FIRST_NAME=${ADMIN_FIRST_NAME}
+      - ADMIN_LAST_NAME=${ADMIN_LAST_NAME}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
   app:
     container_name: app
     stdin_open: true
