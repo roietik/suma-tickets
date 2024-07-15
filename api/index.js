@@ -20,9 +20,9 @@ app.use(cors({
 app.use(bodyParser.json({ limit: "200mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "200mb" }));
 
-pgClient.on("connect", client => {
+pgClient.on("connect", async (client) => {
     console.log('pgClient: connect');
-    createTables(client);
+    await createTables(client);
 });
 
 app.get("/", (req, res) => {

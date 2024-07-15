@@ -77,9 +77,7 @@ async function login(request, response) {
 
     response.cookie('jwt', token, {
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
-        secure: true,   // Only set if using HTTPS
-        sameSite: 'Lax'
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
     });
 
     return { message: 'success' };
@@ -93,19 +91,13 @@ async function logout(request, response) {
 async function token(request, response) {
    try {
        const cookie = request.cookies['jwt'];
-       console.log('cookie', cookie);
        const claims = jwt.verify(cookie, jwtConfig.jwtSecretKey);
        if (!claims) {
-           // todo 401
-           throw new Error("Invalid token");
+           throw new Error("Invalid token claims");
        }
 
-       const employeeResult = await pgClient.query(
-           "SELECT * FROM employees WHERE id = $1",
-           [claims.id]
-       );
+       const employeeResult = await pgClient.query("SELECT * FROM employees WHERE id = $1", [claims.id]);
        const employee = employeeResult.rows[0];
-
        return {
            id: employee.id,
            firstName: employee.first_name,

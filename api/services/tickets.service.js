@@ -2,6 +2,13 @@ const pgClient = require("../config/pg-client.config");
 
 async function getTicketCount(){
     try {
+        const tableExistsResult = await pgClient.query(`SELECT 1 FROM information_schema.tables WHERE table_name = 'tickets'`);
+
+        if (!tableExistsResult.rows.length) {
+            console.log("Tickets table doesn't exist. Returning false.");
+            return String(0);
+        }
+
         const tickets = await pgClient.query("SELECT COUNT(*) FROM tickets");
         return String(tickets.rows[0].count);
     } catch (error) {
@@ -21,6 +28,14 @@ async function getUniqueTicketNumber(){
 
 async function getTicketsLimit(){
     try {
+        // Check if the 'tickets' table exists
+        const tableExistsResult = await pgClient.query(`SELECT 1 FROM information_schema.tables WHERE table_name = 'tickets'`);
+
+        if (!tableExistsResult.rows.length) {
+            console.log("Tickets table doesn't exist. Returning false.");
+            return String(2147483647);
+        }
+
         const result = await pgClient.query('SELECT ticket_limit FROM tickets_limit LIMIT 1');
 
         if (result.rows.length === 0) {
@@ -61,16 +76,34 @@ async function setTicketsLimit(request, response) {
 
 async function getTicketsSoldOut(){
     try {
-        const result = await pgClient.query('SELECT tickets_sold_out FROM tickets_sold_out LIMIT 1');
+        // Check if the 'tickets' table exists
+        const tableExistsResult = await pgClient.query(`SELECT 1 FROM information_schema.tables WHERE table_name = 'tickets'`);
 
-        if (result.rows.length === 0) {
+        if (!tableExistsResult.rows.length) {
+            console.log("Tickets table doesn't exist. Returning false.");
             return false;
         }
 
+        const result = await pgClient.query('SELECT tickets_sold_out FROM tickets_sold_out LIMIT 1');
+        console.log('result1', result);
+        if (!result) {
+            console.log('result2', result);
+            return false;
+        }
+        if (!result.rows) {
+            console.log('result3', result);
+            return false;
+        }
+        if (result.rows.length === 0) {
+            console.log('result4', result);
+            return false;
+        }
+        console.log('result5', result);
+        console.log('result.row...',  result.rows[0].tickets_sold_out)
         return result.rows[0].tickets_sold_out;
     } catch (err) {
         console.error('Error fetching ticket limit:', err);
-        return null;
+        return false;
     }
 }
 

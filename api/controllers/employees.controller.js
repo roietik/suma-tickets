@@ -15,8 +15,18 @@ async function token(request, response) {
         response.send(await employeesService.token(request, response));
     } catch ({ code, message }) {
         const errorMessage = `Błąd pobierania tokenu: ${message}`;
+        if (message === 'Invalid token') {
+            console.error(errorMessage);
+            return response.status(404).send(errorMessage);
+        }
+
+        if (message === 'Invalid token claims') {
+            console.error(errorMessage);
+            return response.status(401).send(errorMessage);
+        }
+
         console.error(errorMessage);
-        response.status(500).send(errorMessage);
+        return response.status(500).send(errorMessage);
     }
 }
 
