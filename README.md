@@ -9,7 +9,7 @@ Generating and sending tickets to an email address
 - __NGINX__: Service listens on port 80 which is mapped by docker-compose to 3050 on the localhost and forwards requests to the api. Matches URL paths starting with '/', '/api', and routes them to the APP, API services defined in the 'upstream app', 'upstream api' block".
 - __POSTGRES__: Service listens on port 5432. It represents a PostgreSQL database server.
 
-## Cloning it with github
+## Cloning it with GitHub
 
 Clone the Main Repository:
 
