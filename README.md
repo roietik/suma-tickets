@@ -2,14 +2,32 @@
 
 Generating and sending tickets to an email address
 
-The application consists of four services:
+## The application consists of four services:
 
 - __APP__: Service listens on port 3000. It represents a frontend application built in the Angular Framework.
 - __API__: Service listens on port 5050. It represents a backend API built using the Express.js framework for Node.js.
 - __NGINX__: Service listens on port 80 which is mapped by docker-compose to 3050 on the localhost and forwards requests to the api. Matches URL paths starting with '/', '/api', and routes them to the APP, API services defined in the 'upstream app', 'upstream api' block".
 - __POSTGRES__: Service listens on port 5432. It represents a PostgreSQL database server.
 
-Project structure
+## Cloning it with GitHub
+
+Clone the Main Repository:
+
+```
+git clone git@github.com:roietik/suma-tickets.git
+```
+Begin by cloning the core suma-tickets repository from GitHub using the above command
+
+
+Clone the App frontend submodule:
+```
+cd app
+git clone git@github.com:roietik/suma-tickets-app.git
+```
+Cloned submodule content should follow a specific structure within the ./app directory.
+Below you will find a expected structure
+
+## Project structure
 ```$ tree suma-tickets
 .
 ├── docker-compose.yml
@@ -30,7 +48,7 @@ Project structure
     
 ```
 
-Deploy it with docker-compose:
+## Deploy it with docker-compose:
 
 Be sure to add the .env file listed above, which is not placed directly in the repository for security reasons
 ```
