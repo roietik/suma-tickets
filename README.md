@@ -44,7 +44,7 @@ Below you will find a expected structure
     ├── Dockerfile
     ├── Dockerfile.dev
     └── nginx
-        └── nginx.conf
+        └── default.conf
     
 ```
 
