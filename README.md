@@ -48,6 +48,24 @@ Below you will find a expected structure
     
 ```
 
+## Docker configuration
+If you're running the project locally for development, set the `DOCKER_FILE_TYPE` environment variable to `Dockerfile.dev`
+```
+// .env file
+
+...
+
+DOCKER_FILE_TYPE="Dockerfile.dev"
+```
+If you're running the project on production, set the `DOCKER_FILE_TYPE` environment variable to `Dockerfile`
+```
+// .env file
+
+...
+
+DOCKER_FILE_TYPE="Dockerfile"
+```
+
 ## Deploy it with docker-compose:
 
 Be sure to add the .env file listed above, which is not placed directly in the repository for security reasons
