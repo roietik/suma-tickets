@@ -1,14 +1,14 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const usersRouter = require('./routes/users.route.js');
-const ticketsRouter = require("./routes/tickets.route");
-const emailsRouter = require("./routes/emails.route");
-const authRouter = require("./routes/auth.route");
-const employeesRouter = require("./routes/employees.route");
-const createTables = require("./services/create-tables.service");
-const pgClient = require("./config/pg-client.config");
-const cookieParser = require("cookie-parser");
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import usersRouter from "./routes/users.route.js";
+import ticketsRouter from "./routes/tickets.route.js";
+import emailsRouter from "./routes/emails.route.js";
+import authRouter from "./routes/auth.route.js";
+import employeesRouter from "./routes/employees.route.js";
+import createTables from "./services/create-tables.service.js";
+import pgClient from "./config/pg-client.config.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(cookieParser());

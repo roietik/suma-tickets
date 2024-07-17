@@ -1,4 +1,4 @@
-const usersService = require('../services/users.service');
+import usersService from "../services/users.service.js";
 
 async function getAll(request, response) {
     try {
@@ -40,7 +40,7 @@ async function isEmailExists(request, response) {
     }
 }
 
-module.exports = {
+export default {
     getAll,
     post,
     remove,

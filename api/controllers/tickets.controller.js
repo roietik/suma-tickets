@@ -1,4 +1,4 @@
-const ticketsService = require("../services/tickets.service");
+import ticketsService from "../services/tickets.service.js";
 
 async function getTicketCount(request, response) {
     try {
@@ -63,11 +63,11 @@ async function setTicketsSoldOut(request, response) {
 }
 
 
-module.exports = {
+export default {
     getTicketCount,
     getUniqueTicketNumber,
     setTicketsLimit,
     getTicketsLimit,
     getTicketsSoldOut,
     setTicketsSoldOut
-}
+};

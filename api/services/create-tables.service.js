@@ -1,5 +1,5 @@
-const adminConfig = require("../config/admin.config");
-const bcrypt = require("bcryptjs");
+import adminConfig from "../config/admin.config.js";
+import bcrypt from "bcryptjs";
 
 async function createDefaultAdminUser(client) {
     const salt = await bcrypt.genSalt(10);
@@ -48,4 +48,5 @@ async function createTables(client) {
         console.error("PG ERROR:", err);
     }
 }
-module.exports = createTables;
+
+export default createTables;

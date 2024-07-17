@@ -1,4 +1,4 @@
-const employeesService = require('../services/employees.service');
+import employeesService from "../services/employees.service.js";
 
 async function getAll(request, response) {
     try {
@@ -69,7 +69,7 @@ async function login(request, response) {
     }
 }
 
-module.exports = {
+export default {
     getAll,
     registration,
     login,

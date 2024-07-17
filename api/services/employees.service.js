@@ -1,7 +1,7 @@
-const pgClient = require("../config/pg-client.config");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const jwtConfig = require("../config/jwt.config");
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import jwtConfig from "../config/jwt.config.js";
+import pgClient from "../config/pg-client.config.js";
 
 async function getAll() {
     const employees = await pgClient.query("SELECT * FROM employees");
@@ -130,7 +130,7 @@ async function remove(request, response) {
     }));
 }
 
-module.exports = {
+export default {
     getAll,
     registration,
     login,

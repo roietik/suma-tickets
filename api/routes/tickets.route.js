@@ -1,6 +1,6 @@
-const express = require('express');
+import express from "express";
+import ticketsController from "../controllers/tickets.controller.js";
 const ticketsRouter = express.Router();
-const ticketsController = require('../controllers/tickets.controller');
 
 ticketsRouter.get('/count', ticketsController.getTicketCount);
 ticketsRouter.get('/unique-id', ticketsController.getUniqueTicketNumber);
@@ -9,4 +9,4 @@ ticketsRouter.post('/limit', ticketsController.setTicketsLimit);
 ticketsRouter.get('/sold-out', ticketsController.getTicketsSoldOut);
 ticketsRouter.post('/sold-out', ticketsController.setTicketsSoldOut);
 
-module.exports = ticketsRouter;
+export default ticketsRouter;

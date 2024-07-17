@@ -1,5 +1,6 @@
-const {Pool} = require("pg");
-const dbConfig = require("./db.config");
+import pkg from "pg";
+const { Pool } = pkg;
+import dbConfig from "./db.config.js";
 
 const pgClient = new Pool({
     host: dbConfig.pgHost,
@@ -9,4 +10,4 @@ const pgClient = new Pool({
     password: dbConfig.pgPassword
 });
 
-module.exports = pgClient
+export default pgClient;

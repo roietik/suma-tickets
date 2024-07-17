@@ -1,4 +1,4 @@
-const {sendEmailGmail} = require("../services/send-email.service");
+import { sendEmailGmail } from "../services/send-email.service.js";
 
 async function sendEmail(request, response) {
     try {
@@ -10,6 +10,6 @@ async function sendEmail(request, response) {
     }
 }
 
-module.exports = {
+export default {
     sendEmail
 };

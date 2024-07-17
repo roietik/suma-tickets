@@ -1,8 +1,8 @@
-const express = require('express');
+import express from "express";
 const employeesRouter = express.Router();
-const employeesController = require('../controllers/employees.controller');
+import employeesController from "../controllers/employees.controller.js";
 
 employeesRouter.get('/', employeesController.getAll);
 employeesRouter.delete('/:id', employeesController.remove);
 
-module.exports = employeesRouter;
+export default employeesRouter;

@@ -1,4 +1,4 @@
-const pgClient = require("../config/pg-client.config");
+import pgClient from "../config/pg-client.config.js";
 
 async function getAll() {
     const users = await pgClient.query("SELECT * FROM users");
@@ -95,9 +95,9 @@ async function isEmailExists(email) {
     return result.rows.length > 0;
 }
 
-module.exports = {
+export default {
     getAll,
     create,
     remove,
     isEmailExists
-}
+};

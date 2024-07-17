@@ -1,5 +1,5 @@
-const nodemailer = require("nodemailer");
-const mailConfig = require("../config/nodemailer.config");
+import nodemailer from "nodemailer";
+import mailConfig from "../config/nodemailer.config.js";
 
 async function sendEmailSandBox() {
     // https://ethereal.email/create
@@ -13,8 +13,8 @@ async function sendEmailSandBox() {
     });
 
     const message = {
-        from: 'radoslaw.grzymala@hotmail.com',
-        to: 'radkoo2.grzymala@gmail.ocmx',
+        from: 'john.doe@mail.com',
+        to: 'john.doe@mail.com',
         subject: 'Subject of your email',
         text: 'Body of your email'
     };
@@ -65,7 +65,7 @@ async function sendEmailGmail(request, response) {
     });
 }
 
-module.exports = {
+export {
     sendEmailSandBox,
     sendEmailGmail
-}
+};

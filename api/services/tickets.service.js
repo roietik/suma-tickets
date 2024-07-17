@@ -1,4 +1,4 @@
-const pgClient = require("../config/pg-client.config");
+import pgClient from "../config/pg-client.config.js";
 
 async function getTicketCount(){
     try {
@@ -131,11 +131,11 @@ async function setTicketsSoldOut(request, response) {
     }
 }
 
-module.exports = {
+export default {
     getTicketCount,
     getUniqueTicketNumber,
     getTicketsLimit,
     setTicketsLimit,
     getTicketsSoldOut,
     setTicketsSoldOut
-}
+};
