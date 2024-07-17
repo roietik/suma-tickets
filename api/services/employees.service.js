@@ -59,8 +59,6 @@ async function login(request, response) {
 
     if (employeeResult.rows.length === 0) {
         throw new Error("Invalid email");
-        // TODO status jak się do tego dobrać
-        // return response.status(404).send("Invalid email");
     }
 
     const employee = employeeResult.rows[0];
@@ -68,8 +66,6 @@ async function login(request, response) {
     const isValidPassword = await bcrypt.compare(password, employee.password);
     if (!isValidPassword) {
         throw new Error("Invalid password");
-        // TODO status jak się do tego dobrać
-        // return response.status(400).send("Invalid password");
     }
 
     const payload = { id: employee.id };

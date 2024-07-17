@@ -28,7 +28,6 @@ async function getUniqueTicketNumber(){
 
 async function getTicketsLimit(){
     try {
-        // Check if the 'tickets' table exists
         const tableExistsResult = await pgClient.query(`SELECT 1 FROM information_schema.tables WHERE table_name = 'tickets'`);
 
         if (!tableExistsResult.rows.length) {

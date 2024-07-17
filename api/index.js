@@ -13,13 +13,9 @@ import corsConfig from "./config/cors.config.js";
 
 const app = express();
 app.use(cookieParser());
-
-app.use(cors({
-    credentials: true,
-    origin: [corsConfig.allowedOrigin],
-}));
-app.use(bodyParser.json({ limit: "200mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "200mb" }));
+app.use(cors({ credentials: true, origin: [corsConfig.allowedOrigin] }));
+app.use(bodyParser.json({ limit: "55mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "55mb" }));
 
 pgClient.on("connect", async (client) => {
     console.log('pgClient: connect');
