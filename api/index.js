@@ -9,13 +9,14 @@ import employeesRouter from "./routes/employees.route.js";
 import createTables from "./services/create-tables.service.js";
 import pgClient from "./config/pg-client.config.js";
 import cookieParser from "cookie-parser";
+import corsConfig from "./config/cors.config.js";
 
 const app = express();
 app.use(cookieParser());
+
 app.use(cors({
     credentials: true,
-    // TODO for prod
-    origin: ['http://localhost:3050'],
+    origin: [corsConfig.allowedOrigin],
 }));
 app.use(bodyParser.json({ limit: "200mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "200mb" }));
