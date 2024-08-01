@@ -112,5 +112,5 @@ $ docker-compose down
 
 Creates a backup of a PostgreSQL database and saves it to a specific location
 ```
-$ docker exec -it postgres pg_dump -U postgres -d postgres > api/var/dumps/dump.sql
+$ docker exec -it postgres pg_dump -U <user_name> -d <database> > api/var/dumps/dump.sql
 ```
