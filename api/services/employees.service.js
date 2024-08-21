@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import jwtConfig from "../config/jwt.config.js";
-import pgClient from "../config/pg-client.config.js";
+import jwtConfig from "../configs/jwt.config.js";
+import pgClient from "../configs/pg-client.config.js";
 
 async function getAll() {
     const employees = await pgClient.query("SELECT * FROM employees");

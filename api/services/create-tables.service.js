@@ -1,4 +1,4 @@
-import adminConfig from "../config/admin.config.js";
+import adminConfig from "../configs/admin.config.js";
 import bcrypt from "bcryptjs";
 
 async function createDefaultAdminUser(client) {

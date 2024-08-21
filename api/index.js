@@ -7,10 +7,12 @@ import emailsRouter from "./routes/emails.route.js";
 import authRouter from "./routes/auth.route.js";
 import employeesRouter from "./routes/employees.route.js";
 import createTables from "./services/create-tables.service.js";
-import pgClient from "./config/pg-client.config.js";
+import pgClient from "./configs/pg-client.config.js";
 import cookieParser from "cookie-parser";
-import corsConfig from "./config/cors.config.js";
+import corsConfig from "./configs/cors.config.js";
+import swaggerDocs from './configs/swagger.config.js';
 
+const PORT = 5050;
 const app = express();
 app.use(cookieParser());
 app.use(cors({ credentials: true, origin: [corsConfig.allowedOrigin] }));
@@ -32,6 +34,7 @@ app.use('/emails', emailsRouter);
 app.use('/auth', authRouter);
 app.use('/employees', employeesRouter);
 
-app.listen(5050, err => {
+app.listen(PORT, err => {
     console.log("Listening");
+    swaggerDocs(app, PORT);
 });

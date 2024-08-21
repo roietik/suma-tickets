@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import mailConfig from "../config/nodemailer.config.js";
+import mailConfig from "../configs/nodemailer.config.js";
 
 async function sendEmailSandBox() {
     // https://ethereal.email/create

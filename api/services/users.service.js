@@ -1,4 +1,4 @@
-import pgClient from "../config/pg-client.config.js";
+import pgClient from "../configs/pg-client.config.js";
 
 async function getAll() {
     const users = await pgClient.query("SELECT * FROM users");
