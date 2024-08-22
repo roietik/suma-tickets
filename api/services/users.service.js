@@ -1,5 +1,43 @@
 import pgClient from "../configs/pg-client.config.js";
+import models from "../models/models.js";
+const Op = models.Sequelize.Op;
 
+const getPagination = (page, size) => {
+    const limit = size ? +size : Number.MAX_SAFE_INTEGER,
+        offset = page ? page * limit : 0;
+
+    return { limit, offset };
+};
+const getPagingData = (data, page, limit) => {
+    const { count: totalItems, rows: users } = data,
+        currentPage = page ? +page : 0,
+        totalPages = Math.ceil(totalItems / limit),
+        collection = users.map(user => ({
+            id: user.id,
+            firstName: user.first_name,
+            lastName: user.last_name,
+            email: user.email
+        }));
+
+    return { totalItems, collection, totalPages, currentPage };
+};
+
+const buildSearchCondition = (fieldObj) => {
+    const entries = Object.entries(fieldObj),
+        [key, value] = entries[0];
+
+    if (!value) return {};
+    return { [key]: { [Op.like]: `%${value}%` } };
+};
+async function findAll() {
+    const users = await pgClient.query("SELECT * FROM users");
+    return users.rows.map(user => ({
+        id: user.id,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        email: user.email
+    }));
+}
 async function getAll() {
     const users = await pgClient.query("SELECT * FROM users");
     return users.rows.map(user => ({
@@ -99,5 +137,8 @@ export default {
     getAll,
     create,
     remove,
-    isEmailExists
+    isEmailExists,
+    getPagingData,
+    getPagination,
+    buildSearchCondition
 };
