@@ -11,6 +11,8 @@ import pgClient from "./configs/pg-client.config.js";
 import cookieParser from "cookie-parser";
 import corsConfig from "./configs/cors.config.js";
 import swaggerDocs from './configs/swagger.config.js';
+import models from './models/models.js';
+models.sequelize.sync();
 
 const PORT = 5050;
 const app = express();

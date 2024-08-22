@@ -34,7 +34,7 @@ const usersRouter = express.Router();
  *                   lastName: Doe
  *                   email: johndoe@example.com
  */
-usersRouter.get('/', usersController.getAll);
+usersRouter.get('/', usersController.findAll);
 
 /**
  * @swagger
